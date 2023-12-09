@@ -17,16 +17,10 @@ void* threadFunction(void* arg) {
     int chunk_size = ARRAY_SIZE / NUM_HILOS;
     int inicio = thread_id * chunk_size;
     int final = (thread_id == NUM_HILOS - 1) ? (ARRAY_SIZE) : ((thread_id + 1) * chunk_size);
-    for (int i = inicio; i < final; ++i) {
-        int numero_floor = (int)floor(array[i]); // Apply floor to each element
-        // Count frequency of each distinct number
-        for (int j = 0; j < ARRAY_SIZE; ++j) {
-            if (floor(array[j]) == numero_floor) {
-                freq[numero_floor]++;
-            }  
-        }
-
-    }
+  	for (int i = inicio; i < final; ++i) {
+		int numero_floor = (int)floor(array[i]);
+        freq[numero_floor]++;
+	}
     //Busy Waiting
     while(flag!=thread_id);
     //Altermaos el array global con la suma
